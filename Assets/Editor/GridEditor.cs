@@ -10,8 +10,11 @@ public class GridEditor : Editor {
 
     Grid grid;
 
+    private int oldIndex = 0;
+
     void OnEnable()
     {
+        oldIndex = 0;
         grid = (Grid)target;
     }
 
@@ -68,6 +71,37 @@ public class GridEditor : Editor {
         {
             grid.tileSet = newTileSet;
             Undo.RecordObject(target, "Grid Changed");
+        }
+
+        if(grid.tileSet != null)
+        {
+            EditorGUI.BeginChangeCheck();
+            var names = new string[grid.tileSet.prefabs.Length];
+            var values = new int[names.Length];
+
+            for(int i = 0; i < names.Length; i++)
+            {
+                names[i] = grid.tileSet.prefabs[i] != null ? grid.tileSet.prefabs[i].name : "";
+                values[i] = i;
+            }
+
+            var index = EditorGUILayout.IntPopup("Select Tile", oldIndex, names, values);
+
+            if (EditorGUI.EndChangeCheck())
+            {
+                Undo.RecordObject(target, "Grid Changed");
+                if(oldIndex != index)
+                {
+                    oldIndex = index;
+                    grid.tilePrefab = grid.tileSet.prefabs[index];
+
+                    float width = grid.tilePrefab.GetComponent<Renderer>().bounds.size.x;
+                    float height = grid.tilePrefab.GetComponent<Renderer>().bounds.size.y;
+
+                    grid.width = width;
+                    grid.height = height;
+                }
+            }
         }
     }
 
