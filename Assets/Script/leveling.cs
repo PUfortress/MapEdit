@@ -5,14 +5,17 @@ public class leveling : MonoBehaviour
 {
 
     private bool is_collided = false;
-    public float GOAL_MIN = 6.0f;
-    public float GOAL_MAX = 10.0f;
+    public float GOAL_XMIN = 110.0f;
+    public float GOAL_XMAX = 147.9f;
+    public float GOAL_YMIN = 7.4f;
+    public float GOAL_YMAX = 53.0f;
 
     // Use this for initialization
     void Start()
     {
-        float rnd = Random.Range(GOAL_MIN, GOAL_MAX);
-        this.transform.position = new Vector3(rnd, 0.0f, 0.0f);
+        float xrnd = Random.Range(GOAL_XMIN, GOAL_XMAX);
+        float yrnd = Random.Range(GOAL_YMIN, GOAL_YMAX);
+        this.transform.position = new Vector3(xrnd, yrnd, 0.0f);
 
     }
 
@@ -24,14 +27,6 @@ public class leveling : MonoBehaviour
     void OnCollisionStay(Collision other)
     {
         this.is_collided = true;
-    }
-
-    void DeletePolygon()
-    {
-        if (is_collided)
-        {
-            DestroyImmediate(transform.gameObject);
-        }
     }
 
 
