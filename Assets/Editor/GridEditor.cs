@@ -21,7 +21,7 @@ public class GridEditor : Editor {
     [MenuItem("Assets/Create/TileSet")]
     static void CreateTileSet()
     {
-        TileSet asset = ScriptableObject.CreateInstance<TileSet>();
+        var asset = ScriptableObject.CreateInstance<TileSet>();
         var path = AssetDatabase.GetAssetPath(Selection.activeObject);
 
         if (string.IsNullOrEmpty(path))
@@ -41,6 +41,7 @@ public class GridEditor : Editor {
         EditorUtility.FocusProjectWindow();
         Selection.activeObject = asset;
         asset.hideFlags = HideFlags.DontSave;
+        
     }
 
     public override void OnInspectorGUI()

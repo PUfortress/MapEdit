@@ -68,9 +68,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\Grid.cs" />
-    <Compile Include="Assets\Script\GridWindow.cs" />
-    <Compile Include="Assets\Script\TileSet.cs" />
+    <Compile Include="Assets\MapScript\Grid.cs" />
+    <Compile Include="Assets\MapScript\TileSet.cs" />
+    <Compile Include="Assets\Script\Createbullet.cs" />
+    <Compile Include="Assets\Script\MyGizmo.cs" />
+    <Compile Include="Assets\Script\PlayerCtrl.cs" />
+    <Compile Include="Assets\Script\goalCtrl.cs" />
+    <Compile Include="Assets\Script\leveling.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
